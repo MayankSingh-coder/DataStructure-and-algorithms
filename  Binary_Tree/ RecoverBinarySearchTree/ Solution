@@ -1,0 +1,28 @@
+ vector<int>v;
+    int i=0;
+    void recoverTree(TreeNode* root) {
+       traverse(root); 
+        sort(v.begin(),v.end());
+       // for(auto x:v)
+       //     cout<<x<<" ";
+       // cout<<"\n";
+        collect(root);
+    }
+    void traverse(TreeNode* root)
+    {
+        if(!root)
+            return;
+        traverse(root->left);
+        v.push_back(root->val);
+        traverse(root->right);
+    }
+    void collect(TreeNode* root)
+    {
+        //static int i=0;
+        if(!root)
+            return;
+        collect(root->left);
+      //  cout<<root->val<<" "<<i<<" "<<v[i]<<"\n";
+        root->val=v[i++];
+        collect(root->right);
+    }

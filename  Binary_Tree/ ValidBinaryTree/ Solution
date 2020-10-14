@@ -1,0 +1,21 @@
+ long long minn=-100000000000000;
+    int flag=0;
+    bool isValidBST(TreeNode* root) {
+       // int minn=-1;
+       // int flag=0;
+        traverse(root);
+        return (flag==0?true:false);
+    }
+    void traverse(TreeNode* root)
+    {
+        if(!root)
+        {
+            return;
+        }
+        traverse(root->left);
+        //cout<<root->val<<" "<<minn<<"\n";
+        if(root->val<=minn)
+            flag=1;
+        minn=root->val;
+        traverse(root->right);
+    }

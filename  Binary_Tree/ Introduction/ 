@@ -1,0 +1,25 @@
+Binary Tree-A directed tree where each node having 0,1,2 nodes.nodes are called left and right node.
+
+Class function to create a Node of Tree-
+     
+        Class Node
+             {
+               public:
+               int data;
+               Node* left, right;
+               Node(int x)
+               {  
+                  data=x;
+                   left=right=NULL;
+
+                }
+
+              };
+
+
+There are 2 types of traversals-
+1. Depth first Search(inorder,preorder,postorder)
+2. Breath first Search
+
+
+

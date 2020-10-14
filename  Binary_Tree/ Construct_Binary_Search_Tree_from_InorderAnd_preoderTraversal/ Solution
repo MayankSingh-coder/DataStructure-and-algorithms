@@ -1,0 +1,30 @@
+map<int,int>m;
+    int preindex=-1;
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
+        for(int i=0;i<inorder.size();i++)
+            m[inorder[i]]=i;//cout<<inorder[i]<<" ";
+        if(!inorder.size())
+            return NULL;
+       return find(preorder,inorder,0,inorder.size()-1);
+       
+    }
+    TreeNode* find(vector<int>& v1,vector<int>& v2,int start,int end)
+    {
+        if(start>end)
+            return NULL;
+       preindex++;
+        //cout<<start<<" "<<end<<" "<<preindex<<"\n";
+        if(start==end)
+        {
+           //return 
+               TreeNode* root=new TreeNode(v2[start]); 
+            return root;
+        }
+      //  int mid=(start+end)/2; 
+        TreeNode* root=new TreeNode(v1[preindex]);
+       // cout<<start<<" "<<m[root->val]<<" "<<root->val<<"\n";
+        root->left=find(v1,v2,start,m[root->val]-1);
+        root->right=find(v1,v2,m[root->val]+1,end);
+        return root;
+    }
+    

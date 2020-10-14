@@ -1,0 +1,17 @@
+vector<int>v;
+    vector<int> inorderTraversal(TreeNode* root) {
+        inorderR(root);
+       // v.push_back(1);
+        return v;
+    }
+   void inorderR(TreeNode* root)
+    {
+        if(!root)
+            return ;
+         inorderR(root->left);
+        v.push_back(root->val);
+        inorderR(root->right);
+      //  v.pop_back();
+       // return v;
+        
+    }
