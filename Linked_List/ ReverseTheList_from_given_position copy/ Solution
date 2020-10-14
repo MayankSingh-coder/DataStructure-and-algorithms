@@ -1,0 +1,33 @@
+ ListNode* reverseBetween(ListNode* head, int m, int n) {
+        stack<int>s;
+        ListNode* temp1,*temp2;
+        if(!head || !head->next)
+            return head;
+        temp1=head;
+        int count=0,flag=0;
+        while(temp1)
+        {
+            count++;
+            if(count==m && flag==0)
+            {
+                flag=1;
+                int len=n-m+1;
+                temp2=temp1;
+                while(len && temp1)
+                {
+                    s.push(temp1->val);
+                    temp1=temp1->next; 
+                    len--;
+                }
+                while(!s.empty())
+                {
+                    temp2->val=s.top();
+                    s.pop();
+                    temp2=temp2->next;
+                }
+            }
+            if(temp1)
+            temp1=temp1->next;
+        }
+        return head;
+    }

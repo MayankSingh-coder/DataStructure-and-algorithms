@@ -1,0 +1,31 @@
+ ListNode* rotateRight(ListNode* head, int k) {
+       ListNode* first,*last;
+        last=first=head;
+        int len=0;
+        if(last==NULL || k==0)
+            return last;
+        while(last->next)
+        {
+            len++;
+            last=last->next;
+        }
+       // if(last)
+        len++;
+       // if(len)
+        k=k%len;
+        //cout<<len<<"\n";
+        len=len-k;
+       // cout<<len<<"\n";
+        while(len)
+        {
+            ListNode* temp;
+            
+            last->next=new ListNode(first->val);
+            last=last->next;
+            temp=first;
+            first=first->next;
+           delete(temp);
+            len--;
+        }
+        return(first);
+    }

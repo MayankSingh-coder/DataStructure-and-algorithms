@@ -1,0 +1,27 @@
+void reorderList(ListNode* head) {
+        ListNode* temp=head,*temp1=head;
+        vector<int>v;
+        while(temp)
+        {
+            v.push_back(temp->val);
+            temp=temp->next;
+        }
+        int i=0,j=v.size()-1;
+       // cout<<j<<"\n";
+        int count=0;
+        while(i<j)
+        {
+           if(count%2==0)
+               temp1->val=v[i++];
+            else
+                temp1->val=v[j--];
+            temp1=temp1->next;
+            count++;
+            cout<<i<<" "<<j<<"\n";
+        }
+       // if(temp1)
+       // cout<<temp->val<<"\n";
+        if(i==j && temp1)
+            temp1->val=v[i];
+       // return head;
+    }

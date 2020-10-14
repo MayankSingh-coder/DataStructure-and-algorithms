@@ -1,0 +1,29 @@
+  ListNode* mergeKLists(vector<ListNode*>& v) {
+        priority_queue<int>q;
+        for(auto x:v)
+        {
+            while(x)
+            {
+                q.push(-(x->val));
+                x=x->next;
+                
+            }
+        }
+        ListNode* head,*temp;
+        head=NULL;
+         while(!q.empty())
+         {
+             if(head==NULL)
+             {
+                 head=new ListNode(-q.top());
+                 temp=head;
+             }
+             else
+             {
+                 temp->next=new ListNode(-q.top());
+                 temp=temp->next;
+             }
+             q.pop();
+         }
+        return(head);
+    }

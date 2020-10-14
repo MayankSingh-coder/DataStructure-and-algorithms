@@ -1,0 +1,33 @@
+ ListNode* deleteDuplicates(ListNode* head) {
+        ListNode* prev,*temp;
+        temp=head;
+        prev=NULL;
+        
+        if(temp==NULL)
+            return temp;
+        map<int,int>m;
+        while(temp)
+        {
+           m[temp->val]++;
+            temp=temp->next;
+        }
+        for(auto x:m)
+        {
+            if(x.second==1)
+            {
+            if(prev==NULL)
+            {
+                prev=new ListNode(x.first);
+                temp=prev;
+            }
+            
+            else
+            {
+                temp->next=new ListNode(x.first);
+                temp=temp->next;
+            }
+            }
+        }
+        
+        return prev;
+    }

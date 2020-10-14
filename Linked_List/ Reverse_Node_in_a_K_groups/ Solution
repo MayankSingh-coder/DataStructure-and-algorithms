@@ -1,0 +1,25 @@
+ ListNode* reverseKGroup(ListNode* head, int k) {
+      int count=0;
+       ListNode *temp1,*temp2;
+        temp1=temp2=head;
+        stack<int>s;
+        while(temp1)
+        {
+            count++;
+            
+            s.push(temp1->val);
+            temp1=temp1->next;
+            if(count==k)
+            {
+                while(!s.empty())
+                {
+                    temp2->val=s.top();
+                    temp2=temp2->next;
+                    s.pop();
+                }
+                count=0;
+            }
+            
+        }
+        return head;
+    }

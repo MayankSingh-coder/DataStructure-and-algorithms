@@ -1,0 +1,30 @@
+ ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        ListNode* head=NULL,*temp,*temp1;
+        priority_queue<int>q;
+        while(l1)
+        {
+            q.push(-(l1->val));
+            l1=l1->next;
+        }
+        while(l2)
+        {
+            q.push(-(l2->val));
+            l2=l2->next;
+        }
+        while(!q.empty())
+        {
+            if(head==NULL)
+            {
+                head=new ListNode(-q.top());
+                //q.pop();
+                temp=head;
+            }
+            else
+            {
+                temp->next=new ListNode(-q.top());
+                temp=temp->next;
+            }
+            q.pop();
+        }
+        return head;
+    }
