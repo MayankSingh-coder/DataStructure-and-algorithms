@@ -1,0 +1,20 @@
+ int maxProfit(vector<int>& v) {
+        if(!v.size())
+            return 0;
+         return find(v,0,v.size()-1);
+    }
+    int find(vector<int>& v,int s,int e)
+    {
+        if(s==e)
+            return 0;
+        int mid=(s+e)/2;
+        int l=find(v,s,mid);
+        int r=find(v,mid+1,e);
+        int minn=1000000000;
+        int maxx=-1;
+        for(int i=s;i<=mid;i++)
+            minn=min(v[i],minn);
+        for(int i=mid+1;i<=e;i++)
+            maxx=max(maxx,v[i]);
+        return max(l,max(r,maxx-minn));
+    }

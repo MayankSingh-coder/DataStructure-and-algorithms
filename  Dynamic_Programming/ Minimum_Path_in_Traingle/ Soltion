@@ -1,0 +1,29 @@
+ int minimumTotal(vector<vector<int>>& v)
+    {
+        for(int i=1;i<v.size();i++)
+        {
+            for(int j=0;j<v[i].size();j++)
+            {
+                if(j==0)
+                 {
+                    v[i][j]+=v[i-1][j];
+                }
+              else if(j==v[i].size()-1)
+                {
+                    v[i][j]+=v[i-1][v[i-1].size()-1];
+                }
+                else
+                {
+                    v[i][j]+=min(v[i-1][j-1],v[i-1][j]);
+                }
+            }
+        }
+        int minn=10000000;
+        for(int i=0;i<v[v.size()-1].size();i++)
+        {
+            minn=min(minn,v[v.size()-1][i]);
+        }
+        if(minn!=10000000)
+        return minn;
+        return 0;
+    }

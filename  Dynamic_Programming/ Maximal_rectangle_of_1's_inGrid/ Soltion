@@ -1,0 +1,79 @@
+int maxx=0;
+    int maximalRectangle(vector<vector<char>>& v) 
+    {
+        if(!v.size())
+            return 0;
+       vector<int>v1;
+       for(int i=0;i<v[0].size();i++)
+       {
+           v1.push_back(0);
+       }
+        for(int i=0;i<v.size();i++)
+        {
+            for(int j=0;j<v[0].size();j++)
+            {
+                if(v[i][j]=='0')
+                    v1[j]=0;
+                if(v[i][j]=='1')
+                    v1[j]+=1;
+            }
+          // for(auto x:v1)
+         //   cout<<x<<" ";
+          //  cout<<"\n";
+            maxxArea(v1);
+            //cout<<maxx<<" ";
+        }
+        return maxx;
+    }
+    void maxxArea(vector<int>& v)
+    {
+        if(!v.size())
+            maxx=max(maxx,0);
+        if(v.size()==1)
+            maxx=max(maxx,v[0]);
+        stack<int>st;
+        int i=0;
+        int n=v.size();
+      //   for(auto x:v)
+      ///          cout<<x<<" ";
+        
+        for(i=0;i<n;i++)
+        {
+            if(st.empty())
+                st.push(i);
+            else if(v[i]>=v[st.top()])
+                st.push(i);
+            else if(v[i]<v[st.top()])
+            {
+                while(!st.empty() && v[i]<v[st.top()])
+                {
+                    int temp=v[st.top()];
+                    st.pop();
+                    if(st.empty())
+                    {
+                        maxx=max(maxx,temp*i);
+                    }
+                    else
+                    {
+                        maxx=max(maxx,temp*(i-1-st.top()));
+                    }
+                }
+                st.push(i);
+            }
+        }
+        while(!st.empty())
+                {
+                    int temp=v[st.top()];
+                    st.pop();
+                    if(st.empty())
+                    {
+                        maxx=max(maxx,temp*i);
+                    }
+                    else
+                    {
+                        maxx=max(maxx,temp*(i-1-st.top()));
+                    }
+                }
+       // cout<<"\n";
+       // cout
+}
