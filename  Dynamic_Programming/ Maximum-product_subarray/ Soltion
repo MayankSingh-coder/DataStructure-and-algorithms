@@ -1,0 +1,17 @@
+ int maxProduct(vector<int>& nums) {
+        if(nums.size() == 0)
+            return 0;
+        
+        pair<int, int>dp[nums.size()];
+        int ans = nums[0];
+        dp[0].first = dp[0].second = nums[0];
+        
+        for(int i = 1; i<nums.size(); i++)
+        {
+            dp[i].first = max(nums[i], max(nums[i]*dp[i-1].first, nums[i]*dp[i-1].second));   
+            dp[i].second =  min(nums[i], min(nums[i]*dp[i-1].first, nums[i]*dp[i-1].second));  
+            if(dp[i].first > ans)
+                ans = dp[i].first;
+        }
+        return ans;
+    }

@@ -1,0 +1,14 @@
+int dp[1000000]={};
+    int rob(vector<int>& v) {
+       
+        if(!v.size())
+            return 0;
+        if(v.size()==1)
+            return v[0];
+        dp[0]=v[0];
+        dp[1]=max(v[1],dp[0]);
+        //cout<<dp[1]<<"\n";
+        for(int i=2;i<v.size();i++)
+            dp[i]=max(v[i]+dp[i-2],dp[i-1]);
+        return dp[v.size()-1];
+    }
